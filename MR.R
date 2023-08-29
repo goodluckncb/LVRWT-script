@@ -4,7 +4,7 @@
 #Therefore, in the following code, we will use ES_IS and hypertrophic cardiomyopathy as examples for illustration
 
 
-##-------------------------------------这一部分利用plink获得独立显著的工具变量------------
+##-------------------------------------This section uses plink to obtain independent significant instrument variables------------
 plink \
     --bfile /home/ncb/heart/gwas/ES_IS  \
     --clump-p1 5e-8 \
@@ -17,7 +17,7 @@ plink \
     --memory 100000 \
     --out /home/ncb/heart/MR/ES_IS_MR
 
-awk 'NR!=1{print $3}' /home/ncb/heart/MR/ES_IS_MR.clumped > /home/ncb/heart/MR/ES_IS_MR.txt #ES_IS_MR.txt包含工具变量
+awk 'NR!=1{print $3}' /home/ncb/heart/MR/ES_IS_MR.clumped > /home/ncb/heart/MR/ES_IS_MR.txt 
 ##--------------------------------------------------------------------------------------
 
 setwd("/home/ncb/heart/MR")
