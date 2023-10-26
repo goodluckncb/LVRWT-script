@@ -1,6 +1,6 @@
 #clump
 plink \
-    --bfile /home/ncb/heart/gwas/ES_IS  \
+    --bfile path/to/genotype/ES_IS  \
     --clump-p1 1e-5 \
     --clump-r2 0.1 \
     --clump-kb 250 \
