@@ -4,12 +4,9 @@
 # Here, ES stands for end systole, ED stands for end diastole, IS represents inferoseptal, I represents inferior, IL represents inferolateral, AL represents anterolateral, A represents anterior, and AS represents anterospetal.
 # In the following code, we will use ES_IS as an example for illustration
 
-
-cd /home/ncb/heart/gwas
-
 #quality control
 plink \
-  --bfile /home/ncb/data/UK/genotype/ukb_genotype \
+  --bfile path/to/genotype/ukb_genotype/ \
   --geno 0.05 \
   --hwe 0.000001 \
   --keep ES_IS_ID.txt \
@@ -31,7 +28,7 @@ plink \
 bolt \
     --maxModelSnps=8463542 \
     --bfile=ES_IS \
-    --geneticMapFile=/home/ncb/bolt-lmm/BOLT-LMM_v2.3.6/tables/genetic_map_hg19_withX.txt.gz \
+    --geneticMapFile=path/to/bolt-lmm/BOLT-LMM_v2.3.6/tables/genetic_map_hg19_withX.txt.gz \
     --modelSnps=ES_IS_maf_0.005.prune.in\
     --phenoFile=ES_IS_phenofile.txt \
     --phenoCol=ES_IS_INT \
@@ -43,15 +40,15 @@ bolt \
     --qCovarCol=pca{1:10} \
     --lmm \
     --lmmForceNonInf \
-    --LDscoresFile=/home/ncb/bolt-lmm/BOLT-LMM_v2.3.6/tables/LDSCORE.1000G_EUR.tab.gz \
+    --LDscoresFile=path/to/bolt-lmm/BOLT-LMM_v2.3.6/tables/LDSCORE.1000G_EUR.tab.gz \
     --numThreads=8 \
-    --statsFile=/home/ncb/heart/gwas/ES_IS_lmm.stats 
+    --statsFile=path/to/gwas_summary_dir/ES_IS_lmm.stats 
 
 #bolt-relm (Calculate the heritability of ES_IS)
 bolt \
     --maxModelSnps=8463542 \
     --bfile=ES_IS \
-    --geneticMapFile=/home/ncb/bolt-lmm/BOLT-LMM_v2.3.6/tables/genetic_map_hg19_withX.txt.gz \
+    --geneticMapFile=path/to/bolt-lmm/BOLT-LMM_v2.3.6/tables/genetic_map_hg19_withX.txt.gz \
     --modelSnps=ES_IS_maf_0.005.prune.in\
     --phenoFile=ES_IS_phenofile.txt \
     --phenoCol=ES_IS_INT \
