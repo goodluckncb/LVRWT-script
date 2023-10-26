@@ -13,10 +13,8 @@
 # .beta Effect size (OR or BETA)
 # .pval p value
 
-cd /home/ncb/heart/ldsc
-
 #step1
-/share/NCB/software/ldsc/munge_sumstats.py --sumstats /home/ncb/heart/gwas/ES_IS_summary.txt  --N 41984 --out ES_IS_summary
+path/to/ldsc/munge_sumstats.py --sumstats /home/ncb/heart/gwas/ES_IS_summary.txt  --N 41984 --out ES_IS_summary
 #This step will generate a file named ES_IS_summary.sumstats.gz
 
 #step2
