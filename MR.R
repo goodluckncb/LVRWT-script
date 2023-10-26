@@ -6,21 +6,21 @@
 
 ##-------------------------------------This section uses plink to obtain independent significant instrument variables------------
 plink \
-    --bfile /home/ncb/heart/gwas/ES_IS  \
+    --bfile path/to/genotype/ES_IS  \
     --clump-p1 5e-8 \
     --clump-r2 0.001 \
     --clump-kb 10 \
-    --clump /home/ncb/heart/gwas/ES_IS_lmm.stats \
+    --clump path/to/gwas_summary_dir/ES_IS_lmm.stats \
     --clump-snp-field SNP \
     --threads 30 \
     --clump-field P_BOLT_LMM_INF \
     --memory 100000 \
-    --out /home/ncb/heart/MR/ES_IS_MR
+    --out path/to/MR/ES_IS_MR
 
-awk 'NR!=1{print $3}' /home/ncb/heart/MR/ES_IS_MR.clumped > /home/ncb/heart/MR/ES_IS_MR.txt 
+awk 'NR!=1{print $3}' path/to/MR/ES_IS_MR.clumped > path/to/MR/ES_IS_MR.txt 
 ##--------------------------------------------------------------------------------------
 
-setwd("/home/ncb/heart/MR")
+setwd("path/to/MR")
 library(TwoSampleMR)
 library(tidyr)
 library(data.table)
@@ -30,7 +30,7 @@ library(readxl)
 
 #exposure--Read and process instrument variables
 instrument <- fread("ES_IS_MR.txt",header = F) %>% rename(SNP=V1)
-exp_dat <- fread("/home/ncb/heart/gwas/ES_IS_lmm.stats")
+exp_dat <- fread("path/to/gwas_summary_dir/ES_IS_lmm.stats")
 exp_dat <- left_join(instrument,exp_dat,by=c("SNP"))
 
 exp_dat <- format_data(
